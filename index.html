@@ -1,0 +1,196 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CSS calculations</title>
+  <meta name="author" content="Matheus Avellar">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./pi-nilakantha.css">
+  <link rel="stylesheet" href="./pi-leibniz.css">
+  <link rel="stylesheet" href="./fib.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header>
+    <h1> Math with CSS </h1>
+    <p> Is CSS Turing Complete? No, probably not. But we can still have fun! </p>
+    <p> Read the FAQ below if you have any questions </p>
+    <hr>
+  </header>
+  <main>
+    <h2>fib.css</h2>
+    <p>
+      Calculates the <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci sequence</a>
+    </p>
+    <section id="fib">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a">
+    </section>
+    <button data-formula="fib">Add iteration</button>
+    <hr>
+    <h2>pi-nilakantha.css</h2>
+    <p>
+      Approximates PI via <a href="https://math.stackexchange.com/a/1834549">Nilakantha's
+      Series</a> (only works in Firefox)
+    </p>
+    <p>
+      Dies on Firefox at iteration #164 with PI = 3.14159264
+    </p>
+    <section id="pi-nilakantha">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b">
+    </section>
+    <button data-formula="pi-nilakantha">Add iteration</button>
+    <hr>
+    <h2>pi-leibniz.css</h2>
+    <p>
+      Approximates PI (very slowly) via <a href="https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80">Leibniz
+      formula</a> (only works in Firefox)
+    </p>
+    <p>
+      Dies on Firefox at iteration #478 with PI = 3.1441110
+    </p>
+    <section id="pi-leibniz">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b"><div class="a"><div class="b"><div class="a"><div class="b">
+      <div class="a"><div class="b">
+    </section>
+    <button data-formula="pi-leibniz">Add iteration</button>
+  </main>
+  <footer>
+    <hr>
+    <h1>FAQ</h1>
+    <h2>Are the results above being calculated entirely in CSS?</h2>
+    <p>
+      Yes! Well, the HTML is critical for it to work, but it is only a means
+      for transporting values from one CSS calculation layer to the next.
+    </p>
+    <p>
+      No JavaScript or otherwise Turing Complete language is being used to
+      calculate the values.
+    </p>
+    <p>
+      JavaScript is being used on the buttons to "request" another iteration
+      from the CSS. However, it simply adds an empty element to the page, it
+      does not do any arithmetic. Everything will continue to work if you
+      disable JavaScript in your browser.
+    </p>
+    <hr>
+    <h2>How does it work?</h2>
+    <p>
+      The stylesheets make use of CSS's so-called <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">custom
+      properties</a>, which are basically variables, and CSS's <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/calc()">calc()</a></code>
+      function, which performs simple arithmetic on said variables.
+    </p>
+    <p>
+      Due to the principle of <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance">inheritance</a>
+      in CSS, we can carry values of an element's custom properties to its
+      children. Thus, if we create multiple nested elements, we can simulate
+      iterations of a <a href="https://en.wikipedia.org/wiki/Series_(mathematics)">series</a>.
+    </p>
+    <hr>
+    <h2>So is CSS Turing Complete?</h2>
+    <p>
+      :(
+    </p>
+    <hr>
+    <h2>Why not?</h2>
+    <p>
+      Well, Turing Completeness is not just doing arithmetic. Roughly, a Turing
+      machine must be able to read, decide, go somewhere, and write. That, in
+      programming terms, translates to reading input, executing conditionals,
+      jumping (or <b>go</b>ing <b>to</b>), and writing output. CSS lacks the
+      decision (or conditionals) and the jumping (or goto) parts.
+    </p>
+    <p>
+      You can build some conditional-like hacks, like what Ana Tudor calls <a href="https://css-tricks.com/dry-switching-with-css-variables-the-difference-of-one-declaration/">switch
+      variables</a> in her great post on CSS Tricks, so I guess you might be
+      able to squeeze out the decision part.
+    </p>
+    <p>
+      However, there is no jumping / goto. That means no loops*, no iterations,
+      nothing that can't be solved in one go – which, for programming, is
+      incredibly limiting.
+    </p>
+    <p>
+      <small>
+        <i>oh but what about animations?</i>
+        This answer is already so huge :( In short, <i>no</i>, but maybe in the
+        future, but only through JS, so <i>no</i> again?.
+      </small>
+    </p>
+    <h3>but you said you had iterations what the heck</h3>
+    <p>
+      That's where the HTML came in! To "fake" an iteration, as explained above,
+      I used nested elements that inherited calculation results from their
+      parents.
+    </p>
+    <p>
+      This comes at a great cost: we have to add a new, separate element for
+      each single iteration. This will quickly slow down the page, as you might
+      have noticed if you added too many new iterations above.
+    </p>
+    <p>
+      Futher, to CSS, it's doing every calculation in one go. Once it reaches
+      the end, it's done, and it doesn't go back. Without external manipulation
+      (i.e. adding or removing an element, or similar), CSS itself won't do
+      anything else after it's done.
+    </p>
+    <hr>
+    <h2>idk what all that means?</h2>
+    <p>
+      It means you cannot build a computer using only CSS, sadly.
+    </p>
+  </footer>
+  <script>
+const section_ref = {};
+const last_ref = {};
+addEventListener("DOMContentLoaded", function() {
+  const buttons = document.querySelectorAll("button[data-formula]");
+  buttons.forEach(b => {
+    b.addEventListener("click", function() {
+      const formula = b.getAttribute("data-formula");
+      let section;
+      if(!(formula in section_ref)) {
+        section = document.getElementById(formula);
+        section_ref[formula] = section;
+      } else {
+        section = section_ref[formula];
+      }
+
+      let last_div = section;
+      if(!(formula in last_ref)) {
+        while(last_div.firstElementChild)
+          last_div = last_div.firstElementChild;
+      } else {
+        last_div = last_ref[formula];
+      }
+
+      const new_div = document.createElement("div");
+      new_div.className = last_div.className === "a"
+        ? "b"
+        : "a";
+      last_div.appendChild(new_div);
+      last_ref[formula] = new_div;
+
+      section.scrollTop = section.scrollHeight;
+    });
+  });
+});
+  </script>
+</body>

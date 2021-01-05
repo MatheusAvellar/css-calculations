@@ -1,0 +1,51 @@
+/* Pi in CSS+HTML
+ * by Matheus Avellar
+ * 2021-01-05
+ *
+ * Using Leibniz formula
+ * (en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80)
+ */
+
+#pi-leibniz {
+  --n1: 0;
+  --n2: 0;
+  --res1: 0;
+  --res2: 0;
+}
+#pi-leibniz div.a {
+  /* Formula is basically
+   *   ±1 / (2n+1)
+   */
+  --n1: calc(var(--n2) + 1.0);
+
+  /* 2n */
+  --two_n: calc(2.0 * var(--n1));
+  /* 2n + 1 */
+  --den: calc(var(--two_n) + 1.0);
+  /* 1 / (2n+1) */
+  --res: calc(-1.0 / var(--den));
+
+  --res1: calc(var(--res) + var(--res2));
+}
+#pi-leibniz div.b {
+  --n2: calc(var(--n1) + 1.0);
+
+  --two_n: calc(2.0 * var(--n2));
+  --den: calc(var(--two_n) + 1.0);
+  --res: calc(1.0 / var(--den));
+
+  --res2: calc(var(--res) + var(--res1));
+}
+
+#pi-leibniz div.a::before {
+  /* Here we multiply everything by a gajillion because CSS counters don't
+   * work with decimals; then we add 1 (gajillion) missing from the series;
+   * finally, we multiply by 4 because the series actually calculates π/4
+   */
+  counter-reset: value calc(4*(10000000 + 10000000 * var(--res1)));
+  content: "Iteration #" counter(iterations) ": " counter(value);
+}
+#pi-leibniz div.b::before {
+  counter-reset: value calc(4*(10000000 + 10000000 * var(--res2)));
+  content: "Iteration #" counter(iterations) ": " counter(value);
+}

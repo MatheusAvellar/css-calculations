@@ -1,0 +1,29 @@
+/* Fibonacci in CSS+HTML
+ * by Matheus Avellar
+ * 2021-01-05
+ */
+
+#fib {
+  --a: 1;
+  --b: 1;
+
+  --x: 1;
+  --y: 1;
+}
+#fib div.a {
+  --x: var(--b);
+  --y: calc(var(--a) + var(--b));
+}
+#fib div.b {
+  --a: var(--y);
+  --b: calc(var(--x) + var(--y));
+}
+
+#fib div.a::before {
+  counter-reset: value var(--a);
+  content: "Iteration #" counter(iterations) ": " counter(value);
+}
+#fib div.b::before {
+  counter-reset: value var(--x);
+  content: "Iteration #" counter(iterations) ": " counter(value);
+}
